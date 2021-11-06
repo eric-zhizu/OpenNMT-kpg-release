@@ -55,10 +55,12 @@ def scan_predictions(exp_root_dir):
         for file in files:
             if file.endswith('.pred'):
                 try:
+                    # Remove the .pred at the end
                     pred_name = file[: -5]
-                    step, data = pred_name.split('-')
+
+                    # Get the step number and the data
+                    step, data = pred_name.split('-data_')[1]
                     step = int(step[step.rfind('step_') + 5:])
-                    data = data[5:]
                     pred = {
                         'ckpt_name': pred_name,
                         'pred_path': os.path.join(subdir, file),
