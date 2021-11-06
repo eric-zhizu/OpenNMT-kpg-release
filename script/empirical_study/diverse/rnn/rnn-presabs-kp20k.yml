@@ -1,8 +1,8 @@
 exp: rnn-presabs-kp20k
-exp_dir: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/rnn-presabs-kp20k
-save_model: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/rnn-presabs-kp20k/ckpts/checkpoint
-log_file: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/rnn-presabs-kp20k/log.txt
-wandb_project: kp20k-meng17-presabs
+exp_dir: /home/ubuntu/meng-reproduction/rnn-presabs-kp20k
+save_model: /home/ubuntu/meng-reproduction/rnn-presabs-kp20k/ckpts/checkpoint
+log_file: /home/ubuntu/meng-reproduction/rnn-presabs-kp20k/log.txt
+wandb_project: kp20k-eric-presabs
 
 ### KP parameters
 ### Data opts:
@@ -15,7 +15,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /zfs1/hdaqing/rum20/kp/data/kp/json/kp20k/train.json
+        path_src: /home/ubuntu/data/json/kp20k_small/kp20k_small_train.json
         type: keyphrase
         transforms: [keyphrase, onmt_tokenize]
 
@@ -25,7 +25,7 @@ kp_concat_type: pres_abs
 
 share_vocab: True
 #### Word and vocab
-src_vocab: /zfs1/pbrusilovsky/rum20/kp/OpenNMT-kpg/data/keyphrase/meng17/magkp20k.vocab.json
+src_vocab: /home/ubuntu/magkp20k.vocab.json
 src_vocab_size: 50000
 lowercase: True
 return_tokens: True
@@ -56,9 +56,9 @@ learning_rate: 0.05
 adagrad_accumulator_init: 0.1
 max_grad_norm: 1.0
 
-batch_size: 32
+batch_size: 128
 accum_count: 2
-valid_batch_size: 64
+valid_batch_size: 128
 
 batch_type: sents
 normalization: sents
