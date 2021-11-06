@@ -446,6 +446,7 @@ class Inference(object):
                 setattr(opt, 'lowercase', self.model_opt.lowercase)
                 setattr(self.opt, 'lowercase', self.model_opt.lowercase)
 
+            print("Src", src)
             _, transforms_cls = prepare_fields_transforms(opt)
             _data_iter = _build_iter_given_examples(src, opt, self.fields, transforms_cls, is_train=False)
             data_iter = IterOnDevice(_data_iter, device_id=self._gpu)
