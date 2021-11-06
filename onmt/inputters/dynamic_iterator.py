@@ -2,6 +2,8 @@
 from itertools import cycle
 
 from torchtext.data import batch as torchtext_batch
+from torchtext.vocab import Vocab
+from collections import Counter
 
 from onmt.constants import CorpusName
 from onmt.inputters import str2sortkey, max_tok_len, OrderedIterator
