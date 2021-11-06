@@ -213,6 +213,7 @@ class DynamicDatasetIter(object):
                 repeat=False,
             )
             for batch in train_iter:
+                """ Added by @eric-zhizu
                 src_ex_vocabs = []
                 src_field = self.fields['src']
                 for i in range(len(batch)):
@@ -222,6 +223,7 @@ class DynamicDatasetIter(object):
                     src_ex_vocab = Vocab(Counter(src), specials=[unk, pad])
                     src_ex_vocabs.append(src_ex_vocab)
                 batch.src_ex_vocab = src_ex_vocabs
+                """
                 yield batch
 
 
