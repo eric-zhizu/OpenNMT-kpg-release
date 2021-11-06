@@ -325,7 +325,7 @@ class Inference(object):
             data_type=opt.data_type,
             verbose=opt.verbose,
             report_time=opt.report_time,
-            copy_attn=model_opt.copy_attn
+            copy_attn=model_opt.copy_attn,
             global_scorer=global_scorer,
             out_file=out_file,
             report_align=report_align,
@@ -480,6 +480,8 @@ class Inference(object):
             _batch_size = batch.batch_size
             num_examples += _batch_size
 
+            print("Batch", batch)
+
             # if batch_idx > 0:
             #     break
 
@@ -493,6 +495,10 @@ class Inference(object):
                     # required in generator
                     batch.src = src
                     batch.tgt = tgt
+
+            print("Batch.src", batch.src.shape, batch.src)
+            print("Batch.tgt", batch.tgt.shape, batch.tgt)
+
             # Output of dynamic batching is src.shape=[batch_size, length, num_feat]
             #   but OpenNMT expects [length, batch_size, num_feat]
             if batch.src[0].shape[0] == _batch_size:

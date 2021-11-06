@@ -32,6 +32,9 @@ setup(
         "waitress==1.4.4",
         "pyonmttok==1.22.1;platform_system=='Linux'",
         "pyyaml==5.3.1",
+        "wandb",
+        "transformers",
+        "fairseq"
     ],
     entry_points={
         "console_scripts": [
