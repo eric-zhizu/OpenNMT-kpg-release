@@ -496,9 +496,6 @@ class Inference(object):
                     batch.src = src
                     batch.tgt = tgt
 
-            print("Batch.src", batch.src.shape, batch.src)
-            print("Batch.tgt", batch.tgt.shape, batch.tgt)
-
             # Output of dynamic batching is src.shape=[batch_size, length, num_feat]
             #   but OpenNMT expects [length, batch_size, num_feat]
             if batch.src[0].shape[0] == _batch_size:
@@ -1034,15 +1031,15 @@ class Translator(Inference):
         # (1) Run the encoder on the src.
         src, enc_states, memory_bank, src_lengths, encoder_output = self._run_encoder(batch)
 
-        # print("src.shape=", src.shape)
-        # print("encoder_output.encoder_out=")
-        # print('max=', encoder_output['encoder_out'][0].data.cpu().numpy().max())
-        # print('min=', encoder_output['encoder_out'][0].data.cpu().numpy().min())
-        # print('mean=', encoder_output['encoder_out'][0].data.cpu().numpy().mean())
-        # print("encoder_output.encoder_embedding=")
-        # print('max=', encoder_output['encoder_embedding'][0].data.cpu().numpy().max())
-        # print('min=', encoder_output['encoder_embedding'][0].data.cpu().numpy().min())
-        # print('mean=', encoder_output['encoder_embedding'][0].data.cpu().numpy().mean())
+        print("src.shape=", src.shape)
+        print("encoder_output.encoder_out=")
+        print('max=', encoder_output['encoder_out'][0].data.cpu().numpy().max())
+        print('min=', encoder_output['encoder_out'][0].data.cpu().numpy().min())
+        print('mean=', encoder_output['encoder_out'][0].data.cpu().numpy().mean())
+        print("encoder_output.encoder_embedding=")
+        print('max=', encoder_output['encoder_embedding'][0].data.cpu().numpy().max())
+        print('min=', encoder_output['encoder_embedding'][0].data.cpu().numpy().min())
+        print('mean=', encoder_output['encoder_embedding'][0].data.cpu().numpy().mean())
 
         self.model.decoder.init_state(src, memory_bank, enc_states)
 
