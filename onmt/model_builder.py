@@ -7,6 +7,7 @@ import re
 import torch
 import torch.nn as nn
 from torch.nn.init import xavier_uniform_
+from torchtext.data import RawField
 
 import onmt.modules
 from onmt.encoders import str2enc
@@ -116,7 +117,8 @@ def load_test_model(opt, model_path=None):
         ArgumentParser.update_model_opts(model_opt)
         ArgumentParser.validate_model_opts(model_opt)
         fields = checkpoint['vocab']
-        print("Fields", fields)
+        src_ex_vocab = RawField()
+        fields["src_ex_vocab"] = src_ex_vocab
         if hasattr(model_opt, 'copy_attn'):
             setattr(opt, 'copy_attn', model_opt.copy_attn)
 
