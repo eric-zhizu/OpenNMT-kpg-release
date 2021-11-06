@@ -66,7 +66,8 @@ def scan_predictions(exp_root_dir):
                         'step': step
                     }
                     preds.append(pred)
-                except:
+                except Exception as err:
+                    print(repr(err))
                     print('invalid pred name %s' % file)
 
     return preds
@@ -94,7 +95,7 @@ if __name__ == "__main__":
     parser.add_argument('--step_base', '-step_base', type=int, default=1,
                         help='the base of step to be evaluated, only if ckpt_step % step_base==0 we evaluate it,  '
                              '1 means evaluate everything.')
-    parser.add_argument('-test_interval', type=int, default=600, help='Minimum time interval the job should wait if a .pred file is not updated by another job (imply another job failed).')
+    parser.add_argument('-test_interval', type=int, default=20, help='Minimum time interval the job should wait if a .pred file is not updated by another job (imply another job failed).')
     parser.add_argument('-testsets', nargs='+', type=str, default=['kp20k', 'openkp', 'stackex', 'kptimes', 'jptimes'], help='Specify datasets to test on')
     parser.add_argument('--pred_trained_only', '-pred_trained_only', action='store_true', help='If true, it only runs inference of testsets that the job has been trained with.')
     parser.add_argument('--ignore_existing', '-ignore_existing', action='store_true', help='If true, it ignores previous generated results.')
