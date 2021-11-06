@@ -59,7 +59,7 @@ def scan_predictions(exp_root_dir):
                     pred_name = file[: -5]
 
                     # Get the step number and the data
-                    step, data = pred_name.split('-data_')[1]
+                    step, data = pred_name.split('-data_')
                     step = int(step[step.rfind('step_') + 5:])
                     pred = {
                         'ckpt_name': pred_name,
