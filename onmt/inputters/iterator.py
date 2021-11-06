@@ -14,6 +14,7 @@ def batch_iter(data, batch_size, batch_size_fn=None, batch_size_multiple=1):
         def batch_size_fn(new, count, sofar):
             return count
     minibatch, size_so_far = [], 0
+    print("Data", data)
     for ex in data:
         print("Ex in minibatch", ex)
         minibatch.append(ex)
