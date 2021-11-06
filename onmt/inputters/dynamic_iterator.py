@@ -211,6 +211,15 @@ class DynamicDatasetIter(object):
                 repeat=False,
             )
             for batch in train_iter:
+                src_ex_vocabs = []
+                src_field = self.fields['src']
+                for i in range(len(batch)):
+                    src = batch[i]
+                    unk = src_field.unk_token
+                    pad = src_field.pad_token
+                    src_ex_vocab = Vocab(Counter(src), specials=[unk, pad])
+                    src_ex_vocabs.append(src_ex_vocab)
+                batch.src_ex_vocab = src_ex_vocabs
                 yield batch
 
 
