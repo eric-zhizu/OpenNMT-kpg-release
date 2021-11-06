@@ -325,7 +325,7 @@ class Inference(object):
             data_type=opt.data_type,
             verbose=opt.verbose,
             report_time=opt.report_time,
-            copy_attn=model_opt.copy_attn
+            copy_attn=model_opt.copy_attn,
             global_scorer=global_scorer,
             out_file=out_file,
             report_align=report_align,
