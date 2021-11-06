@@ -9,14 +9,14 @@ shard_size: 0
 #output: output/pred/kp20k/kp20k.one2one_step_40000.pred
 
 # Evaluation options
-report_bleu: 'false'
-report_rouge: 'false'
-report_kpeval: 'false'
+# report_bleu: 'false'
+# report_rouge: 'false'
+# report_kpeval: 'false'
 report_time: 'true'
 
 # Options most relevant to summarization.
-#dynamic_dict: 'true'
-share_vocab: 'true'
+# dynamic_dict: 'true'
+# share_vocab: 'true'
 
 # Beam search
 #beam_size: 8
@@ -35,7 +35,7 @@ n_best: 500
 # Efficiency
 #batch_size: 32
 #gpu: 0
-gpu: -1
+#gpu: -1
 
-tgt_type: multiple
+#tgt_type: multiple
 #beam_terminate: full/topbeam

@@ -18,10 +18,10 @@
 
 # Run the job
 if (($# == 0)); then
-  echo -e "Please pass argumensts -a <task1> <task2> ... -c <ckpt_dir> -o <output_dir> -g <gpu_id> -b <batch_size> -s <beam_size> -l <max_length> -t full/topbeam -e -p -d <dataset1> <dataset2>..."
+  echo -e "Please pass argumensts -a <task1> <task2> ... -c <ckpt_dir> -o <output_dir> -g <gpu_id> -b <batch_size> -s <beam_size> -l <max_length> -t full/topbeam -e -p -i -d <dataset1> <dataset2>..."
   exit 2
 fi
-while getopts ":a:c:o:g:b:s:l:t:e:p:d:" opt; do
+while getopts ":a:c:o:g:b:s:l:t:e:p:d:i" opt; do
   case $opt in
     a)
       echo "-a (tasks) was triggered, Parameter: $OPTARG" >&2
@@ -93,7 +93,7 @@ while getopts ":a:c:o:g:b:s:l:t:e:p:d:" opt; do
   esac
 done
 
-cmd="python kp_gen_eval.py -config config/test/config-test-keyphrase-one2seq.yml -tasks $task_args -data_dir data/keyphrase/meng17/ -ckpt_dir $ckpt_dir -output_dir $output_dir -gpu 0 -batch_size $batch_size -beam_size $beam_size -max_length $max_length -beam_terminate $beam_terminate -testsets $dataset_args"
+cmd="python kp_gen_eval.py -config config/empirical/test/config-test-keyphrase-one2seq.yml -tasks $task_args -data_dir ../data/meng17/ -ckpt_dir $ckpt_dir -output_dir $output_dir -gpu 0 -batch_size $batch_size -beam_size $beam_size -max_length $max_length -beam_terminate $beam_terminate -testsets $dataset_args"
 
 if [ "$eval_topbeam" = true ]; then
   cmd="${cmd} --eval_topbeam"

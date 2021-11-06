@@ -42,6 +42,9 @@ def build_translator(opt, report_score=True, logger=None, out_file=None):
         else onmt.model_builder.load_test_model
     )
     fields, model, model_opt = load_test_model(opt)
+    
+    # Added by @eric-zhizu to conform with @memray's addition
+    model_opt.kp_concat_type = opt.kp_concat_type
 
     # (deprecated after dynamic data loading) added by @memray, ignore alignment field during testing for keyphrase task
     # if opt.data_type == 'keyphrase' and 'alignment' in fields:
@@ -450,6 +453,26 @@ class Inference(object):
             # src_vocabs will be used in collapse_copy_scores and Translator.py
             src_vocabs = None
             has_tgt = True
+
+            #### added by @eric-zhizu in a hurry to amend src_vocabs ####
+            src_data = {"reader": self.src_reader, "data": src}
+            tgt_data = {"reader": self.tgt_reader, "data": tgt}
+            _readers, _data = inputters.Dataset.config(
+                [("src", src_data), ("tgt", tgt_data)]
+            )
+
+            # modified by @memray to accommodate keyphrase
+            dataset = inputters.str2dataset[self.data_type](
+                self.fields,
+                readers=_readers,
+                data=_data,
+                dirs=["/home/ubuntu/data/json/kp20k_valid2k"],
+                sort_key=inputters.str2sortkey[self.data_type],
+                filter_pred=self._filter_pred,
+                data_format=opt.data_format,
+                tgt_concat_type=opt.kp_concat_type
+            )
+            src_vocabs = dataset.src_vocabs
         else:
             raise NotImplementedError('Currently only support data type=text/keyphrase.')
 

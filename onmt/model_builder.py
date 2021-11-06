@@ -89,7 +89,7 @@ def load_test_model(opt, model_path=None):
     checkpoint = torch.load(model_path,
                             map_location=lambda storage, loc: storage)
 
-    if opt.fairseq_model:
+    if hasattr(opt, 'fairseq_model') and opt.fairseq_model:
         # load a Fairseq-trained model, such as BART
         tokenizer = None
         # fairseq models have no previous fields

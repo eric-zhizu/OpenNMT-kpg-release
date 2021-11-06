@@ -1,6 +1,6 @@
 # Translation / inference options
 #model: models/keyphrase/kp20k/kp20k.one2one.birnn.test_step_40000.pt
-cache_dir: /zfs1/hdaqing/rum20/kp/data/kp/cache/
+cache_dir: ~/data/cache/
 
 model_type: keyphrase
 data_type: keyphrase
@@ -22,7 +22,7 @@ beam_terminate: full
 #### Subword and vocab
 share_vocab: True
 #### Word and vocab
-src_vocab: /zfs1/pbrusilovsky/rum20/kp/OpenNMT-kpg/data/keyphrase/meng17/magkp20k.vocab.json
+src_vocab: /home/ubuntu/magkp20k.vocab.json
 src_vocab_size: 50000
 lowercase: True
 return_tokens: True
@@ -58,8 +58,8 @@ n_best: 500
 random_sampling_temp: 0.0
 
 # Efficiency
-#gpu: 0
-gpu: -1
+gpu: 0
+#gpu: -1
 
 seed: 97
 #beam_terminate: full/topbeam

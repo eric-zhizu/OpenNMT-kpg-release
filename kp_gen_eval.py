@@ -61,6 +61,7 @@ if __name__ == "__main__":
     parser.add_argument('--sleep_time', '-sleep_time', type=int, default=600, help='.')
     parser.add_argument('--ignore_existing', '-ignore_existing', action='store_true', help='If true, it ignores previous generated results.')
     parser.add_argument('--eval_topbeam', '-eval_topbeam',action="store_true", help='Evaluate with top beam only (self-terminating) or all beams (full search)')
+    parser.add_argument('--kp_concat_type', '-kp_concat_type', default='one2seq', help='one2one or one2seq')
 
     opt = parser.parse_args()
 
@@ -176,7 +177,7 @@ if __name__ == "__main__":
                             _, _ = translator.translate(
                                 src=src_shard,
                                 tgt=tgt_shard,
-                                src_dir=opt.src_dir,
+                                # src_dir=opt.src_dir,
                                 batch_size=opt.batch_size,
                                 attn_debug=opt.attn_debug,
                                 opt=opt
@@ -191,7 +192,7 @@ if __name__ == "__main__":
                 do_eval_flag = True
                 if not os.path.exists(pred_path):
                     do_eval_flag = False
-                    # logger.info("Skip evaluating because no available pred file.")
+                    logger.info("Skip evaluating because no available pred file.")
                 else:
                     try:
                         if not pred_path in pred_linecount_dict:
@@ -210,6 +211,7 @@ if __name__ == "__main__":
                                 elapsed_time = time.time() - os.stat(eval_path).st_mtime
                                 if eval_path in eval_linecount_dict and eval_linecount_dict[eval_path] == len(src_shard):
                                     do_eval_flag = False
+                                    logger.info("Skip evaluating because eval_path in eval_linecount_dict and count matches src_shard")
                                 elif elapsed_time < opt.test_interval:
                                     # if file is modified less than opt.test_interval min, it might be being processed by another job.
                                     do_eval_flag = False
@@ -236,11 +238,10 @@ if __name__ == "__main__":
                         if do_eval_flag or opt.ignore_existing:
                             logger.info("Start evaluating [%s] for %s" % (dataname, ckpt_name))
                             logger.info("\t will export eval result to %s." % (eval_path))
-                            score_dict = kp_evaluate.keyphrase_eval(src_path, tgt_path,
+                            score_dict = kp_evaluate.keyphrase_eval(opt.data_dir, src_path, tgt_path,
                                                                     pred_path=pred_path, logger=logger,
                                                                     verbose=opt.verbose,
-                                                                    report_path=printout_path,
-                                                                    eval_topbeam=opt.eval_topbeam
+                                                                    report_path=printout_path
                                                                     )
                             if score_dict is not None:
                                 score_dicts[dataname] = score_dict

@@ -149,17 +149,17 @@ if __name__ == "__main__":
     testset_path_dict = {}
     for testset in opt.testsets:
         for split in opt.splits:
-            if not os.path.exists(opt.data_dir + '/%s/%s.json' % (testset, split)):
+            if not os.path.exists(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split)):
                 logger.info("Data does not exist, skip: %s-%s" % (testset, split))
                 continue
-            src_shard = split_corpus(opt.data_dir + '/%s/%s.json' % (testset, split), shard_size=-1)
-            tgt_shard = split_corpus(opt.data_dir + '/%s/%s.json' % (testset, split), shard_size=-1)
+            src_shard = split_corpus(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split), shard_size=-1)
+            tgt_shard = split_corpus(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split), shard_size=-1)
             src_shard, tgt_shard = list(zip(src_shard, tgt_shard))[0]
             src_shard = [json.loads(l) for l in src_shard]
             tgt_shard = [json.loads(l) for l in tgt_shard]
             logger.info("Loaded data from %s-%s: #src=%d, #tgt=%d" % (testset, split, len(src_shard), len(tgt_shard)))
-            testset_path_dict[testset+'_'+split] = (opt.data_dir + '/%s/%s.json' % (testset, split),
-                                          opt.data_dir + '/%s/%s.json' % (testset, split),
+            testset_path_dict[testset+'_'+split] = (opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split),
+                                          opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split),
                                           src_shard, tgt_shard)
 
     current_patience = opt.wait_patience
