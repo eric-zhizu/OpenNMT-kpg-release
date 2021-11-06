@@ -161,7 +161,7 @@ def get_fields(
     pad=DefaultTokens.PAD,
     bos=DefaultTokens.BOS,
     eos=DefaultTokens.EOS,
-    dynamic_dict=True,
+    dynamic_dict=False,
     with_align=False,
     src_truncate=None,
     tgt_truncate=None,

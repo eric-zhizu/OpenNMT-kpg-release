@@ -116,6 +116,7 @@ def load_test_model(opt, model_path=None):
         ArgumentParser.update_model_opts(model_opt)
         ArgumentParser.validate_model_opts(model_opt)
         fields = checkpoint['vocab']
+        print("Fields", fields)
         if hasattr(model_opt, 'copy_attn'):
             setattr(opt, 'copy_attn', model_opt.copy_attn)
 
