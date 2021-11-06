@@ -94,9 +94,11 @@ class DatasetAdapter(object):
             if maybe_example is not None:
                 example = self._maybe_add_dynamic_dict(
                     maybe_example, self.fields_dict)
+                print("Example", example)
                 ex_fields = {k: [(k, v)] for k, v in self.fields_dict.items()
                              if k in example}
                 ex = TorchtextExample.fromdict(example, ex_fields)
+                print("Ex", ex)
                 examples.append(ex)
         return examples
 

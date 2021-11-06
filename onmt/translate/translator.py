@@ -480,8 +480,6 @@ class Inference(object):
             _batch_size = batch.batch_size
             num_examples += _batch_size
 
-            print("Batch", batch)
-
             # if batch_idx > 0:
             #     break
 
@@ -1023,8 +1021,6 @@ class Translator(Inference):
         Returns:
             results (dict): The translation results.
         """
-        print("Batch", batch)
-
         # (0) Prep the components of the search.
         use_src_map = self.copy_attn
         parallel_paths = decode_strategy.parallel_paths  # beam_size
@@ -1033,8 +1029,6 @@ class Translator(Inference):
         # (1) Run the encoder on the src.
         src, enc_states, memory_bank, src_lengths, encoder_output = self._run_encoder(batch)
 
-        print("src.shape=", src.shape)
-        print("src", src)
         # print("encoder_output.encoder_out=")
         # print('max=', encoder_output['encoder_out'][0].data.cpu().numpy().max())
         # print('min=', encoder_output['encoder_out'][0].data.cpu().numpy().min())

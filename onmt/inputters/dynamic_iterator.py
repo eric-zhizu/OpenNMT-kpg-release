@@ -198,6 +198,7 @@ class DynamicDatasetIter(object):
         if self.init_iterators is False:
             self._init_datasets()
         for bucket in self._bucketing():
+            print("Bucket", bucket)
             dataset = self.dataset_adapter(bucket)
             train_iter = OrderedIterator(
                 dataset,
