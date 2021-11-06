@@ -13,7 +13,7 @@ We assume you know how to launch an instanec on AWS. Here are a few things to ke
 - Select the latest Deep Learning AMI.
 - Select either a g4dn or a p3 instance. Note that p3 instances are faster but more expensive.
 
-# Clone this repository
+# Download the data
 
 Clone this repository using `git clone`.
 
@@ -34,7 +34,7 @@ In the command line, run `python setup.py install`.
 
 Also run `python -m spacy download 'en_core_web_sm'`.
 
-# Run the scripts
+# Run the training/evaluation scripts
 
 ## Train
 Training scripts are stored in `script/empirical_study/diverse/rnn` or `script/empirical_study/diverse/transformer`. When you run a script using the `bash` interpreter, make sure to alter the `.sh` files so that `train.py` is invoked with the right parameters. For example, make sure the output directory points to an existing folder on your machine.
