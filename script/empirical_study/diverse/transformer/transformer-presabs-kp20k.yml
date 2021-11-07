@@ -2,9 +2,9 @@
 
 ### Exp meta
 exp: transformer-presabs-kp20k
-exp_dir: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/transformer_presabs_kp20k
-save_model: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/transformer_presabs_kp20k/ckpts/checkpoint
-log_file: /zfs1/pbrusilovsky/rum20/kp/diverse_exps/exps/transformer_presabs_kp20k/log.txt
+exp_dir: /home/ubuntu/meng-reproduction/transformer_presabs_kp20k
+save_model: /home/ubuntu/efs/transformer_presabs_kp20k/ckpts/checkpoint
+log_file: /home/ubuntu/meng-reproduction/transformer_presabs_kp20k/log.txt
 wandb_project: transfer_kp
 
 ### Data opts:
@@ -19,7 +19,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /zfs1/hdaqing/rum20/kp/data/kp/json/kp20k/train.json
+        path_src: /home/ubuntu/data/json/kp20k/kp20k_train.json
         type: keyphrase
         transforms: [keyphrase, onmt_tokenize]
 
@@ -29,7 +29,7 @@ kp_concat_type: pres_abs
 
 share_vocab: True
 #### Word and vocab
-src_vocab: /zfs1/pbrusilovsky/rum20/kp/OpenNMT-kpg/data/keyphrase/meng17/magkp20k.vocab.json
+src_vocab: /home/ubuntu/magkp20k.vocab.json
 src_vocab_size: 50000
 lowercase: True
 return_tokens: True
@@ -79,7 +79,7 @@ label_smoothing: 0.1
 adam_beta2: 0.998
 max_grad_norm: 2.0
 
-batch_size: 16
+batch_size: 64
 accum_count: 4
 valid_batch_size: 64
 max_generator_batches: 200
