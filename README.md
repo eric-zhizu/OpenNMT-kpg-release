@@ -30,7 +30,7 @@ There are three important files which you should download:
 
 Activate the conda environment `conda activate pytorch_p37`.
 
-In the command line, run `python setup.py install`.
+In the command line, run `python setup.py install`. (You can ignore the warnings it prints.)
 
 Also run `python -m spacy download 'en_core_web_sm'`.
 
