@@ -38,7 +38,6 @@ def scan_new_checkpoints(ckpt_dir):
                 ckpt_path = os.path.join(subdir, file)
                 exp_dir = os.path.dirname(subdir)
                 exp_name = exp_dir[exp_dir.rfind('/') + 1: ]
-                print(exp_name)
                 ckpt_dict = {
                     'exp_dir': exp_dir,
                     'exp_name': exp_name,
@@ -191,7 +190,7 @@ if __name__ == "__main__":
                 ckpt_name = ckpt['ckpt_name']
                 exp_dir = ckpt['exp_dir']
                 exp_name = ckpt['exp_name']
-                logger.info("[%d/%d] Checking checkpoint: %s" % (ckpt_id, len(ckpts), ckpt_path))
+                logger.info("[%d/%d] Checking checkpoint: %s %s %s" % (ckpt_id, len(ckpts), ckpt_path, exp_dir, exp_name))
                 setattr(opt, 'models', [ckpt['ckpt_path']])
 
                 for datasplit_name, dataset in testset_path_dict.items():
