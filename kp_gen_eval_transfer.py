@@ -38,6 +38,7 @@ def scan_new_checkpoints(ckpt_dir):
                 ckpt_path = os.path.join(subdir, file)
                 exp_dir = os.path.dirname(subdir)
                 exp_name = exp_dir[exp_dir.rfind('/') + 1: ]
+                print(exp_name)
                 ckpt_dict = {
                     'exp_dir': exp_dir,
                     'exp_name': exp_name,
