@@ -30,7 +30,7 @@ There are three important files which you should download:
 
 Activate the conda environment `conda activate pytorch_p37`.
 
-In the command line, run `python setup.py install`.
+In the command line, run `python setup.py install`. (You can ignore the warnings it prints.)
 
 Also run `python -m spacy download 'en_core_web_sm'`.
 
@@ -46,5 +46,7 @@ We put the evaluation script in `script/empirical_study/diverse/kpeval_gpu.sh`. 
 For evaluation: `bash script/empirical_study/diverse/kpeval_gpu.sh`
 This runs a set of pretrained models (take a look at the script to see which) on a dataset (again take a look at the script).
 
-For training: `bash script/empirical_study/diverse/rnn/rnn-presabs-kp20k.sh`
+For training the RNN: `bash script/empirical_study/diverse/rnn/rnn-presabs-kp20k.sh`
 This runs the training regimen from [Yuan et al.](https://arxiv.org/abs/1810.05241)
+
+For training the transformer: `bash script/empirical_study/diverse/transformer/transformer-presabs-kp20k.sh`
