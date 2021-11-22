@@ -2,9 +2,9 @@
 
 ### Exp meta
 exp: transformer-presabs-kp20k
-exp_dir: /home/ubuntu/meng-reproduction/transformer_presabs_kp20k
-save_model: /home/ubuntu/efs/transformer_presabs_kp20k/ckpts/checkpoint
-log_file: /home/ubuntu/meng-reproduction/transformer_presabs_kp20k/log.txt
+exp_dir: /home/ubuntu/efs/test_train/transformer_presabs_kp20k
+save_model: /home/ubuntu/efs/test_train/transformer_presabs_kp20k/ckpts/checkpoint
+log_file: /home/ubuntu/efs/test_train/transformer_presabs_kp20k/log.txt
 wandb_project: transfer_kp
 
 ### Data opts:
@@ -19,7 +19,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /home/ubuntu/data/json/kp20k/kp20k_train.json
+        path_src: /home/ubuntu/efs/data/json/kp20k/kp20k_train.json
         type: keyphrase
         transforms: [keyphrase, onmt_tokenize]
 
@@ -29,7 +29,7 @@ kp_concat_type: pres_abs
 
 share_vocab: True
 #### Word and vocab
-src_vocab: /home/ubuntu/magkp20k.vocab.json
+src_vocab: /home/ubuntu/efs/magkp20k.vocab.json
 src_vocab_size: 50000
 lowercase: True
 return_tokens: True
