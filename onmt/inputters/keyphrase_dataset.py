@@ -161,7 +161,6 @@ class KeyphraseDataset(TorchtextDataset):
         can_copy = True
 
         self.dataset_type = infer_dataset_type(dirs[0])
-        print("Dataset type", self.dataset_type)
         dirs = [None, None]
         read_iters = [r.read(dat[1], dat[0], dir_) for r, dat, dir_
                       in zip(readers, data, dirs)]
