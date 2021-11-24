@@ -17,7 +17,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /home/ubuntu/efs/kptimes-data/train.jsonl
+        path_src: /home/ubuntu/efs/kptimes/kptimes_train.jsonl
         type: keyphrase
         transforms: [keyphrase, onmt_tokenize]
 
