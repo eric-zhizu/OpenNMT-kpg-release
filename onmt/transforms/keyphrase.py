@@ -166,10 +166,10 @@ class KeyphraseTransform(Transform):
             dataset_type = example['dataset_type']
         elif 'question' in example:
             dataset_type = 'qa'
-        elif 'url' in example:
-            dataset_type = 'webpage'
         elif 'date' in example:
             dataset_type = 'news'
+        elif 'url' in example:
+            dataset_type = 'webpage'
         elif 'abstract' in example:
             dataset_type = 'scipaper'
 
