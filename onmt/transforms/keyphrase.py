@@ -188,6 +188,7 @@ class KeyphraseTransform(Transform):
             return example
 
         dataset_type = self.infer_dataset_type(example)
+        print("Dataset type", dataset_type)
         src_tokens, tgt_tokens, src_str, tgt_str = self.kpdict_parse_fn(example, self.kp_concat_type, dataset_type=dataset_type)
         if self.return_tokens:
             example['src'] = src_tokens
