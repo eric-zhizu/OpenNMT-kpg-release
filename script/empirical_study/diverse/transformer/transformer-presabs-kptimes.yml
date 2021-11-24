@@ -1,8 +1,8 @@
 ### Experiment metadata
 exp: transformer-presabs-kptimes-trial-01
-exp_dir: /home/ubuntu/efs/transformer-presabs-kptimes-trial-01
+exp_dir: /home/ubuntu/transformer-presabs-kptimes-trial-01
 save_model: /home/ubuntu/efs/transformer-presabs-kptimes-trial-01/ckpts/checkpoint
-log_file: /home/ubuntu/meng-efs/transformer-presabs-kptimes-trial-01/log.txt
+log_file: /home/ubuntu/efs/transformer-presabs-kptimes-trial-01/log.txt
 wandb_project: transformer-presabs-kptimes-trial-01
 
 ### Data opts:
@@ -17,7 +17,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /home/ubuntu/efs/kptimes/kptimes_train.jsonl
+        path_src: /home/ubuntu/kptimes/kptimes_train.jsonl
         type: keyphrase
         transforms: [keyphrase, onmt_tokenize]
 
