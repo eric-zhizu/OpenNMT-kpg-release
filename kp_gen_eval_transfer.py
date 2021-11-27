@@ -22,7 +22,7 @@ import onmt.opts as opts
 train_test_mappings = {
     'kp20k': ['kp20k', 'kp20k_valid2k', 'inspec', 'krapivin', 'semeval', 'nus', 'duc'],
     'openkp': ['openkp', 'openkp_valid2k', 'duc'],
-    'kptimes': ['kptimes', 'kptimes_valid2k', 'jptimes', 'duc'],
+    'kptimes': ['kptimes', 'kptimes_valid2k', 'jptimes', 'duc', 'kptimes_NYTimes500'],
     'stackex': ['stackex', 'stackex_valid2k', 'duc'],
 }
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     for testset in opt.testsets:
         for split in opt.splits:
             if not os.path.exists(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split)):
-                logger.info("Data does not exist, skip: %s-%s" % (testset, split))
+                logger.info("Data does not exist, skip: %s/%s/%s_%s.json" % (opt.data_dir, testset, testset, split))
                 continue
             src_shard = split_corpus(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split), shard_size=-1)
             tgt_shard = split_corpus(opt.data_dir + '/%s/%s_%s.json' % (testset, testset, split), shard_size=-1)

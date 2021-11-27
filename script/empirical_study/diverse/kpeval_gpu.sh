@@ -16,9 +16,9 @@
 
 #source ~/.bash_profile # reload LD_LIBRARY due to error ImportError: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.21' not found
 HOME=/home/ubuntu
-MODELS=/home/ubuntu/efs/transformer_presabs_kp20k/ckpts/
+MODELS=/home/ubuntu/efs/transformer-presabs-kptimes-trial-01/
 
-cmd="python kp_gen_eval_transfer.py -config config/diversity/keyphrase-one2seq-diversity.yml -tasks pred -data_dir $HOME/data/json/ -exp_root_dir $MODELS -testsets kp20k -splits test -batch_size 128 -beam_size 1 -max_length 32 -beam_terminate full --step_base 1 --data_format jsonl --pred_trained_only -gpu 0 -onepass"
+cmd="python kp_gen_eval_transfer.py -config config/diversity/keyphrase-one2seq-diversity.yml -tasks pred -data_dir $HOME -exp_root_dir $MODELS -testsets kptimes_NYTimes500 -splits test -batch_size 128 -beam_size 10 -max_length 32 -beam_terminate full --step_base 1 --data_format jsonl --pred_trained_only -gpu 0"
 
 #echo $cmd
 #echo $PWD
