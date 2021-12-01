@@ -293,7 +293,7 @@ def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None):
     # FairSeq models
     else:
         # Build encoder.
-        bart_dir = os.path.join(model_opt.cache_dir, 'bart.large')
+        bart_dir = os.path.join(model_opt.cache_dir, 'bart.large.cnn')
         bart_path = os.path.join(bart_dir, 'model.pt')
         assert os.path.exists(bart_path), 'BART checkpoint is not found! %s ' % bart_path
 
