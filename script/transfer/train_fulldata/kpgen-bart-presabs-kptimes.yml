@@ -14,6 +14,7 @@ data_format: jsonl
 save_data: /home/ubuntu/efs/kptimes/dynamic.ex0
 overwrite: False
 cache_dir: /home/ubuntu/efs/bart_models
+fairseq_model: true
 
 src_seq_length_trunc: 512
 tgt_seq_length_trunc: 128
