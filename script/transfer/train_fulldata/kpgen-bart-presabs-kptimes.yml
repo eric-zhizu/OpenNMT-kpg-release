@@ -95,7 +95,7 @@ seed: 3435
 log_file_level: DEBUG
 tensorboard: 'false'
 
-wandb: 'true'
+wandb: 'false'
 wandb_key: 'c338136c195ab221b8c7cfaa446db16b2e86c6db'
 
 
