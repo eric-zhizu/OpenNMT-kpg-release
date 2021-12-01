@@ -51,8 +51,8 @@ poisson_lambda: 3.0
 replace_length: 1
 
 # Model opts:
-encoder_type: pretrained
-decoder_type: pretrained
+encoder_type: fairseq_bart
+decoder_type: fairseq_bart
 
 share_embeddings: 'true'
 copy_attn: 'true'
