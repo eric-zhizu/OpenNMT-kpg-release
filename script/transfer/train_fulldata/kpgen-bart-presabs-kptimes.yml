@@ -55,7 +55,7 @@ encoder_type: bart
 decoder_type: bart
 
 share_embeddings: 'true'
-copy_attn: 'true'
+copy_attn: 'false'
 reuse_copy_attn: 'true'
 coverage_attn: 'true'
 context_gate: both
