@@ -61,7 +61,22 @@ def evaluate(src_list, tgt_list, pred_list,
             pred_seqs = pred_seqs
         elif tokenizer == 'split_nopunc':
             src_seq = [t for t in re.split(r'\W', src_dict["src"]) if len(t) > 0]
-            tgt_seqs = [[t for t in re.split(r'\W', p) if len(t) > 0] for p in tgt_dict["tgt"]]
+            tgt_seqs = []
+            for p in tgt_dict["tgt"]:
+                if isinstance(p, str):
+                    tgt_seq = []
+                    for t in re.split(r'\W', p):
+                        if len(t) > 0:
+                            tgt_seq.append(t)
+                    tgt_seqs.append(tgt_seq)
+                else:
+                    # p is a list of strings
+                    tgt_seq = []
+                    for s in p:
+                        for t in re.split(r'\W', s):
+                            if len(t) > 0:
+                                tgt_seq.append(t)
+                    tgt_seqs.append(tgt_seq)
             pred_seqs = [[t for t in re.split(r'\W', ' '.join(p)) if len(t) > 0] for p in pred_seqs]
             unk_token = 'unk'
         else:
@@ -77,6 +92,8 @@ def evaluate(src_list, tgt_list, pred_list,
         valid_and_absent_flags = valid_pred_flags * ~present_pred_flags if len(valid_pred_flags) > 0 else []
 
         # compute match scores (exact, partial and mixed), for exact it's a list otherwise matrix
+        #print("tgt_seqs", tgt_seqs)
+        #print("pred_seqs", pred_seqs)
         match_scores_exact = compute_match_scores(tgt_seqs=tgt_seqs, pred_seqs=pred_seqs, do_lower=True, do_stem=True, type='exact')
         match_scores_partial = compute_match_scores(tgt_seqs=tgt_seqs, pred_seqs=pred_seqs, do_lower=True, do_stem=True, type='ngram')
         # simply add full-text to n-grams might not be good as its contribution is not clear
