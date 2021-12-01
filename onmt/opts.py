@@ -306,12 +306,12 @@ def model_opts(parser):
 
     group.add('--encoder_type', '-encoder_type', type=str, default='rnn',
               choices=['rnn', 'brnn', 'ggnn', 'mean', 'transformer', 'cnn',
-                       'transformer_lm', 'huggingface', 'fairseq_bart'],
+                       'transformer_lm', 'huggingface', 'fairseq_bart', 'pretrained'],
               help="Type of encoder layer to use. Non-RNN layers "
                    "are experimental. Options are "
                    "[rnn|brnn|ggnn|mean|transformer|cnn|transformer_lm].")
     group.add('--decoder_type', '-decoder_type', type=str, default='rnn',
-              choices=['rnn', 'transformer', 'cnn', 'transformer_lm', 'huggingface', 'fairseq_bart'],
+              choices=['rnn', 'transformer', 'cnn', 'transformer_lm', 'huggingface', 'fairseq_bart', 'pretrained'],
               help="Type of decoder layer to use. Non-RNN layers "
                    "are experimental. Options are "
                    "[rnn|transformer|cnn|transformer].")
