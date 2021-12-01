@@ -303,7 +303,7 @@ class CommonLossCompute(LossComputeBase):
     Implement loss compatible with coverage and alignement shards
     """
     def __init__(self, criterion, generator, lambda_coverage, lambda_align, tgt_shift_index, **kwargs):
-        super(CommonLossCompute, self).__init__(criterion, generator, **kwargs)
+        super(CommonLossCompute, self).__init__(criterion, generator)
         self.lambda_coverage = lambda_coverage
         self.lambda_align = lambda_align
         self.tgt_shift_index = tgt_shift_index
