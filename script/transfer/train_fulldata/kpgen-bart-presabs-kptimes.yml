@@ -20,7 +20,7 @@ tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /home/ubuntu/kptimes/kptimes_train.json
+        path_src: /home/ubuntu/kptimes/kptimes_train.jsonl
         type: keyphrase
         transforms: [keyphrase, roberta_tokenize_kpg]
 
