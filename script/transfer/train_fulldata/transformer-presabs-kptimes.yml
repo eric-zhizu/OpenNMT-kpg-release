@@ -1,26 +1,26 @@
-train_from: /zfs1/hdaqing/rum20/kp/fairseq-kpg/exps/kp/transformer_presabs_kptimes/ckpts/checkpoint_step_160000.pt
+# train_from: /zfs1/hdaqing/rum20/kp/fairseq-kpg/exps/kp/transformer_presabs_kptimes/ckpts/checkpoint_step_160000.pt
 
 ### Exp meta
-exp: transformer-presabs-kptimes
-exp_dir: /zfs1/hdaqing/rum20/kp/fairseq-kpg/exps/kp/transformer_presabs_kptimes
-save_model: /zfs1/hdaqing/rum20/kp/fairseq-kpg/exps/kp/transformer_presabs_kptimes/ckpts/checkpoint
-log_file: /zfs1/hdaqing/rum20/kp/fairseq-kpg/exps/kp/transformer_presabs_kptimes/log.txt
+exp: transformer-presabs-kptimes-bart-trial-01
+exp_dir: /home/ubuntu/efs/transformer-presabs-kptimes-bart-trial-01
+save_model: /home/ubuntu/efs/transformer-presabs-kptimes-bart-trial-01/ckpts/checkpoint
+log_file: /home/ubuntu/efs/transformer-presabs-kptimes-bart-trial-01/log.txt
 wandb_project: transfer_kp
 
 ### Data opts:
 data_type: keyphrase
 pretrained_tokenizer: true # using roberta_tokenize_kpg transform
 data_format: jsonl
-save_data: /zfs1/hdaqing/rum20/kp/data/kp/generated/dynamic.ex0
+save_data: /home/ubuntu/efs/kptimes/dynamic.ex0
 overwrite: False
-cache_dir: /zfs1/hdaqing/rum20/kp/data/kp/cache/
+cache_dir: /home/ubuntu/efs/kptimes/cache/
 
 src_seq_length_trunc: 512
 tgt_seq_length_trunc: 128
 shuffle_shards: false
 data:
     corpus_1:
-        path_src: /zfs1/hdaqing/rum20/kp/data/kp/json/kptimes/train.json
+        path_src: /home/ubuntu/kptimes/kptimes_train.json
         type: keyphrase
         transforms: [keyphrase, roberta_tokenize_kpg]
 
@@ -29,7 +29,7 @@ data:
 kp_concat_type: pres_abs
 #### Subword and vocab
 src_subword_model: roberta_tokenize
-src_vocab: /zfs1/hdaqing/rum20/kp/data/kp/hf_vocab/roberta-base-kp/vocab.json
+src_vocab: /home/ubuntu/roberta-base-kp/vocab.json
 share_vocab: True
 bpe_dropout: 0.0
 #### Sampling
