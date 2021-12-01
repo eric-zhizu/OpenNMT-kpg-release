@@ -44,7 +44,7 @@ def build_loss_compute(model, tgt_field, opt, train=True):
         )
     elif opt.label_smoothing > 0 and train:
         criterion = LabelSmoothingLoss(
-            opt.label_smoothing, len(tgt_field.vocab), ignore_index=padding_idx, sep_idx=sep_idx
+            opt.label_smoothing, len(tgt_field.vocab), ignore_index=padding_idx
         )
     elif isinstance(model.generator[-1], LogSparsemax):
         criterion = SparsemaxLoss(ignore_index=padding_idx, reduction='sum')
