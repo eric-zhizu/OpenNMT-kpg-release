@@ -70,6 +70,8 @@ class BARTEncoder(EncoderBase):
             nn.init.normal_(new_token_embedding.weight, mean=0, std=self.embed_tokens.embedding_dim ** -0.5)
             nn.init.constant_(new_token_embedding.weight[self.embed_tokens.padding_idx], 0)
             new_token_embedding.weight.data[:token_emb_len] = self.model.embed_tokens.weight.data
+            print("New token embedding weights data", new_token_embedding.weight.data.shape)
+            print("New token embedding weights", new_token_embeddgin.weight.shape)
             self.model.embed_tokens = new_token_embedding
             self.embed_tokens = new_token_embedding
             # set embed_fields to be word_embeddings, to call token embeddings easily
