@@ -35,8 +35,8 @@ class BARTEncoder(EncoderBase):
             bart_model = bart_model
 
         if prev_checkpoint:
-            # @eric-zhizu: add strict False and overwrite tensor shape True for debugging
-            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=False, overwrite_tensor_shape=True)
+            print("Load checkpoint state dict for encoder")
+            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=True)
 
         self.model = bart_model.model.encoder
         self.embed_tokens = self.model.embed_tokens
