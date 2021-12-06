@@ -35,6 +35,7 @@ class BARTEncoder(EncoderBase):
             bart_model = bart_model
 
         if prev_checkpoint:
+            print("Loading prev checkpoint", prev_checkpoint['model'])
             bart_model.model.load_state_dict(prev_checkpoint['model'], strict=True)
 
         self.model = bart_model.model.encoder
