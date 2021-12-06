@@ -190,7 +190,7 @@ if __name__ == "__main__":
                 ckpt_name = ckpt['ckpt_name']
                 exp_dir = ckpt['exp_dir']
                 exp_name = ckpt['exp_name']
-                logger.info("[%d/%d] Checking checkpoint: %s %s %s" % (ckpt_id, len(ckpts), ckpt_path, exp_dir, exp_name))
+                logger.info("[%d/%d] Checking checkpoint: %s, Exp dir: %s, Exp name: %s" % (ckpt_id, len(ckpts), ckpt_path, exp_dir, exp_name))
                 setattr(opt, 'models', [ckpt['ckpt_path']])
 
                 for datasplit_name, dataset in testset_path_dict.items():
@@ -259,6 +259,7 @@ if __name__ == "__main__":
 
                             # if it's BART model, OpenNMT has to do something additional
                             if 'bart' in exp_name.lower() and not exp_name.lower().startswith('transformer'):
+                                print("Detected bart model, setting bart config attributes...")
                                 opt.__setattr__('fairseq_model', True)
                                 opt.__setattr__('encoder_type', 'bart')
                                 opt.__setattr__('decoder_type', 'bart')
