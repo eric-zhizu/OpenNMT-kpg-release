@@ -90,6 +90,8 @@ def load_test_model(opt, model_path=None):
         print("Load model path", opt.models[0])
     checkpoint = torch.load(model_path,
                             map_location=lambda storage, loc: storage)
+    print('Checkpoint encoder embed_tokens weight',
+          checkpoint['model']['encoder.embed_tokens.weight'].shape)
 
     if hasattr(opt, 'fairseq_model') and opt.fairseq_model:
         # load a Fairseq-trained model, such as BART
