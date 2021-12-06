@@ -1,6 +1,6 @@
 # Translation / inference options
 #model: models/keyphrase/kp20k/kp20k.one2one.birnn.test_step_40000.pt
-cache_dir: /zfs1/hdaqing/rum20/kp/data/kp/cache/
+cache_dir: /home/ubuntu/kptimes_NYTimes500/cache
 
 model_type: keyphrase
 data_type: keyphrase
@@ -22,7 +22,7 @@ lowercase: false
 beam_terminate: full
 #### Subword and vocab
 src_subword_model: roberta_tokenize
-src_vocab: /zfs1/hdaqing/rum20/kp/data/kp/hf_vocab/roberta-base-kp/vocab.json
+src_vocab: /home/ubuntu/hf_vocab/roberta-base-kp/vocab.json
 share_vocab: True
 bpe_dropout: 0.0
 
