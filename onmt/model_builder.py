@@ -90,8 +90,6 @@ def load_test_model(opt, model_path=None):
         print("Load model path", opt.models[0])
     checkpoint = torch.load(model_path,
                             map_location=lambda storage, loc: storage)
-    print('Checkpoint encoder embed_tokens weight',
-          checkpoint['model']['encoder.embed_tokens.weight'].shape)
 
     if hasattr(opt, 'fairseq_model') and opt.fairseq_model:
         # load a Fairseq-trained model, such as BART
@@ -126,7 +124,7 @@ def load_test_model(opt, model_path=None):
             setattr(opt, 'copy_attn', model_opt.copy_attn)
 
     model = build_base_model(model_opt, fields, use_gpu(opt), checkpoint,
-                             opt.gpu)
+                             opt.gpu, checkpoint_path=model_path)
     if opt.fp32:
         model.float()
     elif opt.int8:
@@ -198,7 +196,7 @@ def build_task_specific_model(model_opt, fields):
         raise ValueError(f"No model defined for {model_opt.model_task} task")
 
 
-def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None):
+def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None, checkpoint_path=None):
     """Build a model from opts.
 
     Args:
@@ -211,6 +209,9 @@ def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None):
         checkpoint: the model gnerated by train phase, or a resumed snapshot
                     model from a stopped training.
         gpu_id (int or NoneType): Which GPU to use.
+
+        @eric-zhizu
+        checkpoint_path
 
     Returns:
         the NMTModel.
@@ -296,11 +297,18 @@ def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None):
     # FairSeq models
     else:
         # Build encoder.
-        bart_dir = os.path.join(model_opt.cache_dir, 'bart.large.cnn')
-        bart_path = os.path.join(bart_dir, 'model.pt')
-        assert os.path.exists(bart_path), 'BART checkpoint is not found! %s ' % bart_path
+        if checkpoint_path:
+            bart_dir = os.path.dirname(checkpoint_path)
+            checkpoint_file = os.path.basename(checkpoint_path)
+            bart_path = os.path.join(bart_dir, checkpoint_file)
+            assert os.path.exists(bart_path), 'BART checkpoint is not found! %s ' % bart_path
+        else:
+            bart_dir = os.path.join(model_opt.cache_dir, 'bart.large.cnn')
+            checkpoint_file = 'model.pt'
+            bart_path = os.path.join(bart_dir, checkpoint_file)
+            assert os.path.exists(bart_path), 'BART checkpoint is not found! %s ' % bart_path
 
-        bart_model = BARTModel.from_pretrained(bart_dir, checkpoint_file='model.pt')
+        bart_model = BARTModel.from_pretrained(bart_dir, checkpoint_file=checkpoint_file)
         encoder = build_encoder(model_opt, embeddings=None, bart_model=bart_model, prev_checkpoint=checkpoint)
 
         # Build decoder.
