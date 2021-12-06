@@ -124,7 +124,7 @@ def load_test_model(opt, model_path=None):
             setattr(opt, 'copy_attn', model_opt.copy_attn)
 
     model = build_base_model(model_opt, fields, use_gpu(opt), checkpoint,
-                             opt.gpu, checkpoint_path=model_path)
+                             opt.gpu)
     if opt.fp32:
         model.float()
     elif opt.int8:
@@ -211,7 +211,8 @@ def build_base_model(model_opt, fields, gpu, checkpoint=None, gpu_id=None, check
         gpu_id (int or NoneType): Which GPU to use.
 
         @eric-zhizu
-        checkpoint_path
+        checkpoint_path (str or NoneType): load from checkpoint_path, else load from cache_dir
+            for BART model
 
     Returns:
         the NMTModel.
