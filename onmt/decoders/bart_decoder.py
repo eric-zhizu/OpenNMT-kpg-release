@@ -57,8 +57,8 @@ class BARTDecoder(DecoderBase):
             bart_model = bart_model
 
         if prev_checkpoint:
-            # @eric-zhizu: add strict False and overwrite tensor shape True for debugging
-            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=False, overwrite_tensor_shape=True)
+            print("Load checkpoint state dict for decoder")
+            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=True)
 
         self.model = bart_model.model.decoder
         # override the original forward function
