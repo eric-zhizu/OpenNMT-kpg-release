@@ -64,6 +64,8 @@ class BARTEncoder(EncoderBase):
                                      % (self.embed_positions.num_embeddings, str(self.embed_positions.weight.shape)))
 
         # Expand token embeddings if necessary
+        # @eric-zhizu: Commented out because causing problems
+        """
         token_emb_len = self.embed_tokens.num_embeddings
         if vocab_size > token_emb_len:
             new_token_embedding = nn.Embedding(vocab_size, self.embed_tokens.embedding_dim, padding_idx=self.embed_tokens.padding_idx)
@@ -79,6 +81,7 @@ class BARTEncoder(EncoderBase):
 
             logging.getLogger().info('Adjusted vocab size to %d, token_embed.shape=%s'
                                      % (self.embed_tokens.num_embeddings, str(self.embed_tokens.weight.shape)))
+        """
 
 
     @classmethod
