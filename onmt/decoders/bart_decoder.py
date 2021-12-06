@@ -57,7 +57,7 @@ class BARTDecoder(DecoderBase):
             bart_model = bart_model
 
         if prev_checkpoint:
-            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=True)
+            bart_model.model.load_state_dict(prev_checkpoint['model'], strict=False)
 
         self.model = bart_model.model.decoder
         # override the original forward function
