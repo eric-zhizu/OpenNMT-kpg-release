@@ -258,7 +258,7 @@ if __name__ == "__main__":
                             logger.info("*" * 50)
 
                             # if it's BART model, OpenNMT has to do something additional
-                            if 'bart' in exp_name.lower() and not exp_name.lower().startswith('transformer'):
+                            if 'bart' in exp_name.lower():
                                 print("Detected bart model, setting bart config attributes...")
                                 opt.__setattr__('fairseq_model', True)
                                 opt.__setattr__('encoder_type', 'bart')
