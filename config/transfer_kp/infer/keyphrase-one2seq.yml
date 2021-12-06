@@ -1,6 +1,6 @@
 # Translation / inference options
 #model: models/keyphrase/kp20k/kp20k.one2one.birnn.test_step_40000.pt
-cache_dir: /home/ubuntu/kptimes_NYTimes500/cache
+cache_dir: /home/ubuntu/bart_models
 
 model_type: keyphrase
 data_type: keyphrase
